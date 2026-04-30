@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>One Piece Game</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+
+  <div class="container">
+    <img src="img/grand_clash_logo.png" class="logo">
+
+    <form id="playerForm">
+      <input type="text" id="nick" placeholder="Nick" required>
+
+      <select id="difficulty">
+        <option value="easy">Baja</option>
+        <option value="medium">Media</option>
+        <option value="hard">Alta</option>
+      </select>
+
+      <select id="cards">
+        <option value="9">3x3</option>
+        <option value="16">4x4</option>
+        <option value="25">5x5</option>
+      </select>
+
+      <select id="avatar">
+        <option value="avatar-luffy.jpg">Luffy</option>
+        <option value="avatar-zoro.jpg">Zoro</option>
+      </select>
+
+      <button type="submit">Jugar</button>
+    </form>
+  </div>
+
+  <script src="js/app.js"></script>
 </body>
 </html>

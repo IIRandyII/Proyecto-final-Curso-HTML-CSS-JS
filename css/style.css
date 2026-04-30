@@ -10,6 +10,7 @@ body {
 
 .container {
   text-align: center;
+  width: 300px;
 }
 
 .logo {
@@ -23,14 +24,62 @@ form {
   gap: 10px;
 }
 
-input, select, button {
+label {
+  text-align: left;
+  font-size: 14px;
+}
+
+input {
   padding: 10px;
   border-radius: 5px;
   border: none;
 }
 
-button {
+/* BOTONES OPCIONES */
+.options {
+  display: flex;
+  gap: 10px;
+}
+
+.options button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #3a506b;
+  color: white;
+}
+
+.options button.active {
   background: #e63946;
+}
+
+/* AVATARES */
+.avatars {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.avatars img {
+  width: 60px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.avatars img.active {
+  border: 2px solid #e63946;
+}
+
+/* BOTÓN */
+.play-btn {
+  margin-top: 10px;
+  padding: 10px;
+  background: #e63946;
+  border: none;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
 }

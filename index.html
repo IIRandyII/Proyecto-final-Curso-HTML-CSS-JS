@@ -11,26 +11,34 @@
     <img src="img/grand_clash_logo.png" class="logo">
 
     <form id="playerForm">
-      <input type="text" id="nick" placeholder="Nick" required>
+    <!-- NOMBRE -->
+    <label>Nombre del jugador</label>
+    <input type="text" id="nick" placeholder="Ingresa el nombre del jugador" required>
 
-      <select id="difficulty">
-        <option value="easy">Baja</option>
-        <option value="medium">Media</option>
-        <option value="hard">Alta</option>
-      </select>
+    <!-- DIFICULTAD -->
+    <label>Dificultad</label>
+    <div class="options" id="difficulty">
+      <button type="button" data-value="easy">Fácil</button>
+      <button type="button" data-value="medium">Medio</button>
+      <button type="button" data-value="hard">Difícil</button>
+    </div>
 
-      <select id="cards">
-        <option value="9">3x3</option>
-        <option value="16">4x4</option>
-        <option value="25">5x5</option>
-      </select>
+    <!-- CARTAS -->
+    <label>Número de cartas</label>
+    <div class="options" id="cards">
+      <button type="button" data-value="9">3x3</button>
+      <button type="button" data-value="16">4x4</button>
+      <button type="button" data-value="25">5x5</button>
+    </div>
 
-      <select id="avatar">
-        <option value="avatar-luffy.jpg">Luffy</option>
-        <option value="avatar-zoro.jpg">Zoro</option>
-      </select>
+    <!-- AVATAR -->
+    <label>Elige tu avatar</label>
+    <div class="avatars" id="avatar">
+      <img src="img/avatars/avatar-luffy.jpg" data-value="avatar-luffy.jpg">
+      <img src="img/avatars/avatar-zoro.jpg" data-value="avatar-zoro.jpg">
+    </div>
 
-      <button type="submit">Jugar</button>
+      <button type="submit" class="play-btn">Jugar</button>
     </form>
   </div>
 

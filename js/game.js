@@ -98,7 +98,27 @@ function flip() {
   }
 }
 
-// CHECK MATCH
+// MOSTRAR MODAL
+function showModal(win) {
+  const overlay = document.getElementById("modalOverlay");
+  const icon = document.getElementById("modalIcon");
+  const title = document.getElementById("modalTitle");
+  const subtitle = document.getElementById("modalSubtitle");
+
+  if (win) {
+    icon.textContent = "🏆";
+    title.textContent = "¡Victoria!";
+    subtitle.textContent = `Emparejaste todas las cartas con ${moves} tiradas y ${score} puntos. ¡Eres un gran pirata!`;
+  } else {
+    icon.textContent = "💀";
+    title.textContent = "Derrotado";
+    subtitle.textContent = `Te quedaste sin tiradas. Conseguiste ${score} puntos. ¡El Grand Line no perdona!`;
+  }
+
+  overlay.style.display = "flex";
+}
+
+// CHECK MATCH — reemplaza el tuyo completo
 function check() {
   lock = true;
   moves++;
@@ -106,7 +126,7 @@ function check() {
   remainingText.textContent = maxMoves - moves;
 
   if (first.dataset.image === second.dataset.image) {
-   score++;
+    score++;
     scoreText.textContent = score;
     first.classList.add("matched");
     second.classList.add("matched");
@@ -120,8 +140,16 @@ function check() {
     }, getTime());
   }
 
-   if (moves >= maxMoves) {
-    setTimeout(() => alert("Perdiste 😢"), 300);
+  if (moves >= maxMoves) {
+    setTimeout(() => showModal(false), 300);
+  }
+}
+
+// GANAR — reemplaza el tuyo
+function checkWin() {
+  const allMatched = document.querySelectorAll(".card.matched").length === cards.length;
+  if (allMatched) {
+    setTimeout(() => showModal(true), 300);
   }
 }
 
@@ -130,12 +158,4 @@ function reset() {
   first = null;
   second = null;
   lock = false;
-}
-
-//Ganar
-function checkWin() {
-  const allMatched = document.querySelectorAll(".card.matched").length === cards.length;
-  if (allMatched) {
-    setTimeout(() => alert("Ganaste 🎉"), 300);
-  }
 }

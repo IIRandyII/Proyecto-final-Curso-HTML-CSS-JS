@@ -1,85 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: Arial;
-  background: #0b132b;
+  font-family: 'Nunito', sans-serif;
+  background: #08111f;
   color: white;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start;
+  padding: 2.5rem 1rem 3rem;
 }
 
 .container {
-  text-align: center;
-  width: 300px;
+  width: min(420px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.logo {
-  width: 200px;
-  margin-bottom: 20px;
+/* LOGO */
+.Logo {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: #e8dcc8;
+  letter-spacing: 4px;
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.Logo .clash {
+  color: #b8860b;
+}
+
+.Game {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: #7a5c00;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+/* SEPARADOR DECORATIVO */
+.container::before {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: #b8860b;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.6rem;
+  gap: 10px;
 }
 
 form {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 18px;
 }
 
+/* LABELS */
 label {
-  text-align: left;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #6b8caa;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* INPUT */
+input[type="text"] {
+  width: 100%;
+  padding: 12px 16px;
+  background: #0d1e35;
+  border: 1.5px solid #1e3a5f;
+  border-radius: 8px;
+  color: #e8dcc8;
+  font-family: 'Nunito', sans-serif;
   font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+input[type="text"]:focus {
+  border-color: #b8860b;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+}
+input::placeholder {
+  color: #2d4a65;
 }
 
-input {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
+/* CARDS DE DIFICULTAD */
+.difficulty-container {
+  display: flex;
+  gap: 8px;
 }
 
-/* BOTONES OPCIONES */
+.difficulty-card {
+  flex: 1;
+  background: #0d1e35;
+  border: 1.5px solid #1e3a5f;
+  border-radius: 10px;
+  padding: 14px 8px 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.difficulty-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.2s;
+}
+.difficulty-card:hover {
+  border-color: #b8860b;
+  transform: translateY(-2px);
+}
+.difficulty-card:hover::after,
+.difficulty-card.active::after {
+  background: #b8860b;
+}
+.difficulty-card.active {
+  border-color: #b8860b;
+  background: #111e30;
+}
+
+.difficulty-card .icon {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.difficulty-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #c8b99a;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+}
+.difficulty-card.active h3 {
+  color: #b8860b;
+}
+.difficulty-card p {
+  font-size: 11px;
+  color: #3d5a72;
+  line-height: 1.5;
+}
+
+/* BOTONES OPCIONES (3x3, 4x4, 5x5) */
 .options {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .options button {
   flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
+  padding: 11px 8px;
+  background: #0d1e35;
+  border: 1.5px solid #1e3a5f;
+  border-radius: 8px;
+  color: #4a6a82;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   cursor: pointer;
-  background: #3a506b;
-  color: white;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
-
+.options button:hover {
+  border-color: #b8860b;
+  color: #b8860b;
+}
 .options button.active {
-  background: #e63946;
+  border-color: #b8860b;
+  color: #b8860b;
 }
 
 /* AVATARES */
 .avatars {
   display: flex;
-  gap: 10px;
+  gap: 16px;
   justify-content: center;
+  padding: 4px 0;
 }
-
 .avatars img {
-  width: 60px;
-  border-radius: 10px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2.5px solid #1e3a5f;
   cursor: pointer;
-  border: 2px solid transparent;
+  object-fit: cover;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
 }
-
+.avatars img:hover {
+  border-color: #b8860b;
+  transform: scale(1.07);
+}
 .avatars img.active {
-  border: 2px solid #e63946;
+  border-color: #c0392b;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.3);
 }
 
-/* BOTÓN */
+/* BOTÓN JUGAR */
 .play-btn {
-  margin-top: 10px;
-  padding: 10px;
-  background: #e63946;
+  width: 100%;
+  padding: 15px;
+  background: #c0392b;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   color: white;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
   cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 4px;
+}
+.play-btn:hover {
+  background: #a93226;
+}
+.play-btn:active {
+  transform: scale(0.98);
 }

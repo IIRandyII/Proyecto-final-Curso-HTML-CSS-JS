@@ -8,7 +8,8 @@
 <body>
 
   <div class="container">
-    <img src="img/grand_clash_logo.png" class="logo">
+    <h3 class="Logo">Grand <span class="clash">Clash</span></h3>
+    <span class="Game">One piece memory</span>
 
     <form id="playerForm">
     <!-- NOMBRE -->
@@ -17,11 +18,26 @@
 
     <!-- DIFICULTAD -->
     <label>Dificultad</label>
-    <div class="options" id="difficulty">
-      <button type="button" data-value="easy">Fácil</button>
-      <button type="button" data-value="medium">Medio</button>
-      <button type="button" data-value="hard">Difícil</button>
+    <div class="difficulty-container" id="difficulty">
+      <div class="difficulty-card" data-value="easy">
+        <div class="icon">🌊</div>
+          <h3>Fácil</h3>
+          <p>10 seg • 30 tiradas</p>
     </div>
+
+  <div class="difficulty-card" data-value="medium">
+    <div class="icon">⚔️</div>
+    <h3>Medio</h3>
+    <p>5 seg • 20 tiradas</p>
+  </div>
+
+  <div class="difficulty-card" data-value="hard">
+    <div class="icon">💀</div>
+    <h3>Difícil</h3>
+    <p>2 seg • 12 tiradas</p>
+  </div>
+
+</div>
 
     <!-- CARTAS -->
     <label>Número de cartas</label>

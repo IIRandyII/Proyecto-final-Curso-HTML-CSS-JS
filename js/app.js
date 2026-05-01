@@ -3,11 +3,11 @@ let selectedCards = null;
 let selectedAvatar = null;
 
 // SELECCIÓN DIFICULTAD
-document.querySelectorAll("#difficulty button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll("#difficulty button").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    selectedDifficulty = btn.dataset.value;
+document.querySelectorAll(".difficulty-card").forEach(card => {
+  card.addEventListener("click", () => {
+    document.querySelectorAll(".difficulty-card").forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+    selectedDifficulty = card.dataset.value;
   });
 });
 

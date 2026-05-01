@@ -10,14 +10,6 @@ document.getElementById("playerName").textContent = player.nick;
 document.getElementById("playerAvatar").src = `img/avatars/${player.avatar}`;
 
 
-// CONFIG GRID
-const cols = {
-  12: 3,
-  16: 4,
-  24: 4
-}[player.cards];
-
-board.style.gridTemplateColumns = `repeat(${cols}, 100px)`;
 
 // IMÁGENES
 const images = [

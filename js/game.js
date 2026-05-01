@@ -26,6 +26,10 @@ const images = [
   { src: "img/cards/zoro_card.jpg",       tipo: "HÉROE",   nombre: "Zoro",       color: "#66ff88", border: "#1a6b2a", bg: "#0f2d14" },
   { src: "img/cards/law_card.jpg",        tipo: "HÉROE",   nombre: "Law",        color: "#66ccff", border: "#1a5a7a", bg: "#0f1e2d" },
   { src: "img/cards/sanji_card.jpeg",     tipo: "HÉROE",   nombre: "Sanji",      color: "#ffe566", border: "#7a6b10", bg: "#2d280f" },
+  { src: "img/cards/nami_card.jpg",    tipo: "HÉROE",   nombre: "Nami",    color: "#ffaa44", border: "#cc7700", bg: "#2d1f08" },
+  { src: "img/cards/teach_card.jpg",   tipo: "VILLANO", nombre: "Teach",   color: "#aa88ff", border: "#3a1a6b", bg: "#150a2d" },
+  { src: "img/cards/ace_card.jpg",     tipo: "HÉROE",   nombre: "Ace",     color: "#ff6633", border: "#aa2200", bg: "#2d0f08" },
+  { src: "img/cards/chopper_card.jpg", tipo: "HÉROE",   nombre: "Chopper", color: "#ff99cc", border: "#cc3377", bg: "#2d0f1a" },
 ];
 
 // SELECCIÓN SEGÚN TAMAÑO

@@ -6,8 +6,13 @@ const movesText = document.getElementById("moves");
 document.getElementById("playerName").textContent = player.nick;
 
 // CONFIG GRID
-const size = Math.sqrt(player.cards);
-board.style.gridTemplateColumns = `repeat(${size}, 100px)`;
+const cols = {
+  12: 3,
+  16: 4,
+  24: 4
+}[player.cards];
+
+board.style.gridTemplateColumns = `repeat(${cols}, 100px)`;
 
 // IMÁGENES
 const images = [

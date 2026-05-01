@@ -2,8 +2,13 @@ const player = JSON.parse(localStorage.getItem("playerData"));
 
 const board = document.getElementById("board");
 const movesText = document.getElementById("moves");
+const scoreText = document.getElementById("score");
+const remainingText = document.getElementById("remaining");
 
+// NOMBRE Y AVATAR
 document.getElementById("playerName").textContent = player.nick;
+document.getElementById("playerAvatar").src = `img/avatars/${player.avatar}`;
+
 
 // CONFIG GRID
 const cols = {
@@ -36,6 +41,7 @@ let first = null;
 let second = null;
 let lock = false;
 let moves = 0;
+let score = 0;
 
 // MOVIMIENTOS SEGÚN DIFICULTAD
 let maxMoves = {
@@ -44,7 +50,10 @@ let maxMoves = {
   hard: 12
 }[player.difficulty];
 
-movesText.textContent = `Movimientos: 0/${maxMoves}`;
+// INICIALIZAR CONTADORES
+movesText.textContent = moves;
+remainingText.textContent = maxMoves;
+scoreText.textContent = score;
 
 // TIEMPO SEGÚN DIFICULTAD
 function getTime() {
@@ -93,9 +102,14 @@ function flip() {
 function check() {
   lock = true;
   moves++;
-  movesText.textContent = `Movimientos: ${moves}/${maxMoves}`;
+  movesText.textContent = moves;
+  remainingText.textContent = maxMoves - moves;
 
   if (first.dataset.image === second.dataset.image) {
+   score++;
+    scoreText.textContent = score;
+    first.classList.add("matched");
+    second.classList.add("matched");
     reset();
     checkWin();
   } else {
@@ -106,26 +120,22 @@ function check() {
     }, getTime());
   }
 
-  if (moves >= maxMoves && first !== null) {
+   if (moves >= maxMoves) {
     setTimeout(() => alert("Perdiste 😢"), 300);
   }
 }
 
-// RESET TURNO
+//Reset
 function reset() {
   first = null;
   second = null;
   lock = false;
 }
 
-// GANAR
+//Ganar
 function checkWin() {
-  const allCards = document.querySelectorAll(".card img");
-  const allOpen = [...allCards].every(img =>
-    !img.src.includes("card_back")
-  );
-
-  if (allOpen) {
+  const allMatched = document.querySelectorAll(".card.matched").length === cards.length;
+  if (allMatched) {
     setTimeout(() => alert("Ganaste 🎉"), 300);
   }
 }

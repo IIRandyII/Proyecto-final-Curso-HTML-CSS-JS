@@ -1,28 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: #1c2541;
+  background: #08111f;
   color: white;
-  font-family: Arial;
-  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
 }
 
-.top {
-  margin: 20px;
+/* NAV */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  background: #0d1e35;
+  border-bottom: 1.5px solid #b8860b;
 }
 
+.stats {
+  display: flex;
+  gap: 24px;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #6b8caa;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #b8860b;
+}
+
+/* PLAYER INFO */
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-name {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e8dcc8;
+  letter-spacing: 0.05em;
+}
+
+.player-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2.5px solid #b8860b;
+  object-fit: cover;
+}
+
+/* TABLERO */
 #board {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   justify-content: center;
+  padding: 2rem;
+  margin-top: 1rem;
 }
 
 .card {
   width: 100px;
   height: 140px;
   cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
 }
 
 .card img {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  border: 1.5px solid #1e3a5f;
+}
+
+.card.matched img {
+  border-color: #b8860b;
+  box-shadow: 0 0 8px rgba(184, 134, 11, 0.4);
 }

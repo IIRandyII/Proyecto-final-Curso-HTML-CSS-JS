@@ -6,11 +6,26 @@
   <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
-
-  <div class="top">
-    <h2 id="playerName"></h2>
-    <p id="moves"></p>
-  </div>
+  <nav class="navbar">
+    <div class="stats">
+      <div class="stat-box">
+        <span class="stat-label">Puntos</span>
+        <span class="stat-value" id="score">0</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Tiradas</span>
+        <span class="stat-value" id="moves">0</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Restantes</span>
+        <span class="stat-value" id="remaining">0</span>
+      </div>
+    </div>
+    <div class="player-info">
+      <span class="player-name" id="playerName"></span>
+      <img class="player-avatar" id="playerAvatar" src="" alt="avatar">
+    </div>
+  </nav>
 
   <div id="board"></div>
 

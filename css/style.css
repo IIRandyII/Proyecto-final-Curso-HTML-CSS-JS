@@ -214,15 +214,14 @@ input::placeholder {
   transform: scale(1.07);
 }
 .avatars img.active {
-  border-color: #c0392b;
-  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.3);
+  border-color: #b8860b;
 }
 
 /* BOTÓN JUGAR */
 .play-btn {
   width: 100%;
   padding: 15px;
-  background: #c0392b;
+  background: #b8860b;
   border: none;
   border-radius: 8px;
   color: white;
@@ -235,7 +234,7 @@ input::placeholder {
   margin-top: 4px;
 }
 .play-btn:hover {
-  background: #a93226;
+  background: #d39b0d;
 }
 .play-btn:active {
   transform: scale(0.98);

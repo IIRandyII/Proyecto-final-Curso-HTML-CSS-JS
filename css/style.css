@@ -70,6 +70,10 @@ form {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  background: #0d1e35;
+  border: 1.5px solid #b8860b;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
 }
 
 /* LABELS */

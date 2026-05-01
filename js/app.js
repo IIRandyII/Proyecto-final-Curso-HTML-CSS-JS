@@ -35,9 +35,9 @@ document.getElementById("playerForm").addEventListener("submit", (e) => {
 
   const player = {
     nick: document.getElementById("nick").value,
-    difficulty: document.getElementById("difficulty").value,
-    cards: parseInt(document.getElementById("cards").value),
-    avatar: document.getElementById("avatar").value
+    difficulty: selectedDifficulty,
+    cards: selectedCards,
+    avatar: selectedAvatar
   };
 
   localStorage.setItem("playerData", JSON.stringify(player));

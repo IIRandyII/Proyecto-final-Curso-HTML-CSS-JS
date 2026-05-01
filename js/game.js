@@ -101,7 +101,7 @@ function check() {
     }, getTime());
   }
 
-  if (moves >= maxMoves) {
+  if (moves >= maxMoves && first !== null) {
     setTimeout(() => alert("Perdiste 😢"), 300);
   }
 }

@@ -9,16 +9,23 @@ const remainingText = document.getElementById("remaining");
 document.getElementById("playerName").textContent = player.nick;
 document.getElementById("playerAvatar").src = `img/avatars/${player.avatar}`;
 
+// GRID
+board.style.display = "grid";
+board.style.gap = "12px";
+board.style.justifyContent = "center";
 
+// DORSO
+const cardBack = "img/cards/one_piece_card_back.png";
 
-// IMÁGENES
+// IMÁGENES CON DATOS DE CADA PERSONAJE
 const images = [
-  "img/cards/luffy_card.png",
-  "img/cards/zoro_card.png",
-  "img/cards/kaido_card.png",
-  "img/cards/doflamingo_card.png",
-  "img/cards/usopp_card.png",
-  "img/cards/bigmom_card.png"
+  { src: "img/cards/doflamingo_card.jpg", tipo: "VILLANO", nombre: "Doflamingo", color: "#ff85d0", border: "#8b2d6e", bg: "#2d1020" },
+  { src: "img/cards/kaido_card.jpg",      tipo: "VILLANO", nombre: "Kaido",      color: "#c9a0ff", border: "#4a2d7a", bg: "#1a1030" },
+  { src: "img/cards/bigmom_card.jpg",     tipo: "VILLANO", nombre: "Big Mom",    color: "#ff85aa", border: "#9a3060", bg: "#2d0f1a" },
+  { src: "img/cards/luffy_card.jpg",      tipo: "HÉROE",   nombre: "Luffy",      color: "#ff8866", border: "#c0392b", bg: "#2d1008" },
+  { src: "img/cards/zoro_card.jpg",       tipo: "HÉROE",   nombre: "Zoro",       color: "#66ff88", border: "#1a6b2a", bg: "#0f2d14" },
+  { src: "img/cards/law_card.jpg",        tipo: "HÉROE",   nombre: "Law",        color: "#66ccff", border: "#1a5a7a", bg: "#0f1e2d" },
+  { src: "img/cards/sanji_card.jpeg",     tipo: "HÉROE",   nombre: "Sanji",      color: "#ffe566", border: "#7a6b10", bg: "#2d280f" },
 ];
 
 // SELECCIÓN SEGÚN TAMAÑO
@@ -57,30 +64,50 @@ function getTime() {
 }
 
 // CREAR TABLERO
-cards.forEach((img) => {
-  const card = document.createElement("div");
-  card.classList.add("card");
-  card.dataset.image = img;
+cards.forEach((card) => {
+  const el = document.createElement("div");
+  el.classList.add("card");
 
-  card.innerHTML = `<img src="img/cards/one_piece_card_back.png">`;
+  // guardamos los datos del personaje en el elemento
+  el.dataset.src    = card.src;
+  el.dataset.nombre = card.nombre;
+  el.dataset.tipo   = card.tipo;
+  el.dataset.color  = card.color;
+  el.dataset.border = card.border;
+  el.dataset.bg     = card.bg;
 
-  // CLICK
-  card.addEventListener("click", flip);
-
-  // DRAG
-  card.setAttribute("draggable", true);
-  card.addEventListener("dragstart", (e) => {
-    e.dataTransfer.setData("text", img);
-  });
-
-  board.appendChild(card);
+  // empieza boca abajo
+  el.innerHTML = `<img src="${cardBack}">`;
+  el.addEventListener("click", flip);
+  board.appendChild(el);
 });
 
 // VOLTEAR
 function flip() {
   if (lock || this === first) return;
 
-  this.innerHTML = `<img src="${this.dataset.image}">`;
+  const { src, nombre, tipo, color, border, bg } = this.dataset;
+
+  // aplicar estilo de carta volteada
+  this.style.border = `2px solid ${border}`;
+  this.style.borderRadius = "12px";
+  this.style.background = bg;
+
+  this.innerHTML = `
+  <div style="position:relative; width:100%; height:100%;">
+    <div style="font-family:'Cinzel',serif; font-size:9px; font-weight:700; letter-spacing:2px;
+      text-align:center; padding:5px 0; background:${border}; color:${color}; text-transform:uppercase;
+      position:absolute; top:0; left:0; right:0; z-index:2;">
+      ${tipo}
+    </div>
+    <img src="${src}" style="width:100%; height:100%; object-fit:cover; object-position:top; display:block;">
+    <div style="font-family:'Cinzel',serif; font-size:11px; font-weight:700; text-align:center;
+      padding:7px 4px; color:${color}; background:${border}cc;
+      position:absolute; bottom:0; left:0; right:0; z-index:2;">
+      ${nombre}
+    </div>
+  </div>
+`;
 
   if (!first) {
     first = this;
@@ -90,7 +117,54 @@ function flip() {
   }
 }
 
-// MOSTRAR MODAL
+// CHECK MATCH
+function check() {
+  lock = true;
+  moves++;
+  movesText.textContent = moves;
+  remainingText.textContent = maxMoves - moves;
+
+  if (first.dataset.src === second.dataset.src) {
+    score++;
+    scoreText.textContent = score;
+    first.classList.add("matched");
+    second.classList.add("matched");
+    reset();
+    checkWin();
+  } else {
+    setTimeout(() => {
+      // volver al dorso y limpiar estilos
+      first.innerHTML = `<img src="${cardBack}">`;
+      first.style.border = "";
+      first.style.background = "";
+      second.innerHTML = `<img src="${cardBack}">`;
+      second.style.border = "";
+      second.style.background = "";
+      reset();
+    }, getTime());
+  }
+
+  if (moves >= maxMoves) {
+    setTimeout(() => showModal(false), 300);
+  }
+}
+
+// RESET TURNO
+function reset() {
+  first = null;
+  second = null;
+  lock = false;
+}
+
+// GANAR
+function checkWin() {
+  const allMatched = document.querySelectorAll(".card.matched").length === cards.length;
+  if (allMatched) {
+    setTimeout(() => showModal(true), 300);
+  }
+}
+
+// MODAL
 function showModal(win) {
   const overlay = document.getElementById("modalOverlay");
   const icon = document.getElementById("modalIcon");
@@ -108,46 +182,4 @@ function showModal(win) {
   }
 
   overlay.style.display = "flex";
-}
-
-// CHECK MATCH — reemplaza el tuyo completo
-function check() {
-  lock = true;
-  moves++;
-  movesText.textContent = moves;
-  remainingText.textContent = maxMoves - moves;
-
-  if (first.dataset.image === second.dataset.image) {
-    score++;
-    scoreText.textContent = score;
-    first.classList.add("matched");
-    second.classList.add("matched");
-    reset();
-    checkWin();
-  } else {
-    setTimeout(() => {
-      first.innerHTML = `<img src="img/cards/one_piece_card_back.png">`;
-      second.innerHTML = `<img src="img/cards/one_piece_card_back.png">`;
-      reset();
-    }, getTime());
-  }
-
-  if (moves >= maxMoves) {
-    setTimeout(() => showModal(false), 300);
-  }
-}
-
-// GANAR — reemplaza el tuyo
-function checkWin() {
-  const allMatched = document.querySelectorAll(".card.matched").length === cards.length;
-  if (allMatched) {
-    setTimeout(() => showModal(true), 300);
-  }
-}
-
-//Reset
-function reset() {
-  first = null;
-  second = null;
-  lock = false;
 }
